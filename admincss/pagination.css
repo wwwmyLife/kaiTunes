@@ -1,0 +1,75 @@
+@charset "UTF-8";
+.M-box2 {
+    text-align: center;
+    width:100%;
+    zoom: 1;
+}
+
+.M-box2:before,
+.M-box2:after {
+    content: "";
+    display: table;
+}
+
+.M-box2:after {
+    clear: both;
+    overflow: hidden;
+}
+
+.M-box2 span {
+    float: left;
+    margin: 0 5px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #bdbdbd;
+    font-size: 12px;
+}
+
+.M-box2 .active {
+    float: left;
+    margin: 0 5px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background: #fe1388;
+    color: #fff;
+    font-size: 12px;
+    border: 1px solid #fe1388;
+}
+
+.M-box2 a {
+    float: left;
+    margin: 0 5px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    color: #6c6c6c;
+    font-size: 12px;
+}
+
+.M-box2 a:hover {
+    color: #fff;
+    background: #fe1388;
+}
+
+.M-box2 .next,
+.M-box2 .prev {
+    font-family: "Simsun";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.now,
+.count {
+    padding: 0 5px;
+    color: #f00;
+}
+
+.eg img {
+    max-width: 800px;
+    min-height: 500px;
+}
+

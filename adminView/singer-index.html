@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>KaiTunes后台</title>
+	<link href="../admincss/admin.css" rel="stylesheet" />
+	<script src="../adminjs/jquery.min.js"></script>
+        <script src="../adminjs/jquery.pagination.js" ></script>
+        <link href="../admincss/pagination.css" rel="stylesheet">
+</head>
+<body>
+<div id="top">
+	<h1 class="left">KaiTunes音乐 后台管理系统</h1>
+	<ul class="right">
+		<li>欢迎您：<{$smarty.session.username}></li>
+		<li>|</li><li><a href="../Control/playMusicControl.php" target="_blank">前台首页</a></li>
+		<li>|</li><li><a href="../adminControl/nologin.php">退出登录</a></li>
+	</ul>
+</div>
+<div id="main">
+	<div id="menu" class="left">
+		<ul><li><a href="../adminControl/adminLoginControl.php" id="Index_index">后台首页</a></li>
+			<li><a href="../adminControl/addSingerControl.php" id="singer_add">歌手添加</a></li>
+                        <li><a href="../adminControl/addAlbumControl.php" id="album_add">专辑添加</a></li>
+                        <li><a href="../adminControl/addSongControl.php" id="song_add">歌曲添加</a></li>
+                        <li><a href="../adminControl/singerIndexControl.php?tabSi=0" id="singer_index">歌手列表</a></li>
+			<li><a href="../adminControl/album-indexControl.php" id="album-index">专辑列表</a></li>
+                       	<li><a href="../adminControl/song-findControl.php" id="song-find">歌曲搜索</a></li>
+			<li><a href="../adminControl/memberControl.php" id="Member_index">会员管理</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<div class="item"><div class="title">歌手列表</div>
+<div class="title-btn left"><a href="../adminControl/addSingerControl.php">添加歌手</a></div>
+<div class="data-list clear">请选择商品分类：
+	<select name="cid">
+		<option value="0">全部</option>
+                <{foreach $Tabsi as $value}>
+                <option value="<{$value['tabsiID']}>"  ><{$value['tabname']}></option>
+                <{/foreach}>
+        </select> <input type="button" name="tab-sure" value="确定">
+    <table border="1">
+		<tr><th width="50">歌手ID</th><th width="150">歌手名字</th><th width="120">歌手标签</th><th width="80">推荐</th><th width="120">操作</th></tr>
+		<{foreach $resultSinger[2] as $value}>                       
+                <tr><td class="center"><{$value['singerID']}></td>
+			<td class="center"><{$value['singername']}></td>
+                        <td class="center"><{$value['tabname']}></td>
+			<td class="center"><{if $value['is_re_singer'] eq 1}>是<{else}>否<{/if}></td>
+                        <td class="center"><span class="remove">删除</span></td></tr>
+                <{/foreach}>  
+    </table>
+	<div class="pagelist" style="margin-left: 0;width:700px;margin-top: 40px;">
+                <div class="M-box2">
+                </div>            
+            </div>
+</div>
+</div>
+	</div>
+    <input type="hidden" name='currenTabsi' value="<{$tabSi}>">
+    <input type="hidden" name='singerTotal' value="<{$resultSinger[3][0]['singerTotal']}>">
+</div>
+</body>
+</html>
+<script>
+    $('.M-box2').pagination({
+        coping: true,
+        homePage: '首页',
+        endPage: '末页',
+        prevContent: '上页',
+        nextContent: '下页',
+        pageCount:((parseInt($('input[name=singerTotal]').val())-3)/2+1).toString(),
+        callback: function (api) {
+            var yema=parseInt(api.getCurrent())*2-1;
+            var tabsi=$('input[name=currenTabsi]').val();
+            if(yema==1){
+                yema=0;
+            }
+            singerAjax(tabsi,yema)  
+        }
+    });
+    $(':input[name=tab-sure]').click(function(){
+    var tabsi=$("select :selected").val();
+    singerAjax(tabsi,0);
+    $('.M-box2').pagination({
+        coping: true,
+        homePage: '首页',
+        endPage: '末页',
+        prevContent: '上页',
+        nextContent: '下页',
+        pageCount:((parseInt($('input[name=singerTotal]').val())-3)/2+1).toString(),
+        callback: function (api) {
+            var yema=parseInt(api.getCurrent())*2-1;
+            var tabsi=$('input[name=currenTabsi]').val();
+            if(yema==1){
+                yema=0;
+            } 
+            singerAjax(tabsi,yema)  
+        }
+    });
+})
+
+        function singerAjax(tabsi,yema){
+          $.ajax({
+                type:"GET",
+                url:"../adminControl/singerindexfenyeControl.php",   //请求的url地址，即删除商品的控制器
+                data:{tabSiID:tabsi,yema:yema,falg:0},  //请求时发送的数据，mid和gid
+                dataType:"json",
+                success: function(msg){
+                  console.log(msg);
+                     $('table').empty();
+                     if(yema==0){
+                         $('input[name=singerTotal]').val(msg[3][0]['singerTotal']);
+                         $('input[name=currenTabsi]').val(tabsi);
+                            $('.M-box2').pagination({
+                            coping: true,
+                            homePage: '首页',
+                            endPage: '末页',
+                            prevContent: '上页',
+                            nextContent: '下页',
+                            pageCount:((parseInt($('input[name=singerTotal]').val())-3)/2+1).toString(),
+                            //callback()： PageCallback
+                            callback: function (api) {
+                                var yema=parseInt(api.getCurrent())*2-1;
+                                var tabsi=$('input[name=currenTabsi]').val();
+                                if(yema==1){
+                                    yema=0;
+                                } 
+                                singerAjax(tabsi,yema)  
+                            }
+                        });    
+                     }
+                     var singerqian="<tr><th width='50'>歌手ID</th><th width='150'>歌手名字</th><th width='120'>歌手标签</th><th width='80'>推荐</th><th width='120'>操作</th></tr>";
+                     $.each(msg[2],function(index){
+                     singerqian+="<tr><td class='center'>"+msg[2][index]['singerID']+"</td><td class='center'>"+msg[2][index]['singername']+"</td><td class='center'>"+msg[2][index]['tabname']+"</td><td class='center'><{if "+msg[2][index]['is_re_singer']+" eq 1}>是<{else}>否<{/if}></td><td class='center'><span class='remove'>删除</span></td></tr>"   
+                         })
+                     $('table').html(singerqian);
+                     }
+            })
+     }  
+     
+     $('table').on('click','.remove',function(){
+         if(confirm('该操作将删除该歌手所有数据，包括专辑、歌曲等，确认删除？')){
+              var singerID=$(this).parents('tr').find('td').eq(0).text();
+              alert(singerID);
+              //return;
+              
+            $.post('../adminControl/delControl.php',{singerID:singerID,falg:1},function(msg){
+                for(var key in msg){
+                    if(key==0){
+                        $('td:contains('+singerID+')').parents('tr').remove();   
+                        alert(msg[key]);
+                    }else{
+                        alert(msg[key]);
+                    }
+                }
+            },'json')
+         }
+     })
+    </script>

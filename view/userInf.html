@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js" ></script>
+    <link href="../css/index-css.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="migu-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="../images/logo.png" alt="">
+            </div>
+            <div class="header-left">
+                <ul>
+                    <li><a href="indexControl.php">推荐</a></li>
+                    <li><a href="singerControl.php?tabSi=0">歌手</a></li>
+                    <li><a href="myControl.php">我的</a></li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <div class="user">
+                    <div class="login">
+                        <span>登录</span>
+                        <span>注册</span>
+                    </div>
+                    <div class="yonghu">
+                        <img src="../images/default-head.png" alt="">
+                        <span></span>
+                        <ul>
+                            <li>退出</li>
+                        </ul>
+                    </div>
+                    <!--<span id="ppp">|作者 ></span>
+
+                    <div class="zuozhe">
+                        <a href=""><img src="images/default-head.png" alt=""></a>
+                        <div class="menu">
+                            <ul>
+                                <li>姓名：王云凯</li>
+                                <li>学号：201526203068</li>
+                                <li>手机：18979545800</li>
+                                <li>邮箱：18979545800@163.com</li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="find">
+                     <input type="text" name="content" value="听你喜欢">
+                    <input class="yun" name="search" type="button" value="搜索">
+                </div>
+            </div>
+        </div>
+        <div class="header-footer">
+            </div>
+</div>
+    <{nocache}>
+    <div class="user-inf">
+        <div class='my-images'><img src="../images/<{$userinf['userImages']}>" style="width: 240px;height:240px"><br>
+            <span>我的头像</span>
+        </div>
+<div class="infbox">
+	<form method="post" enctype="multipart/form-data" onsubmit="return checkfrom(this)" >
+            <div class='inf-edit'>
+                <div><span>用户名：</span><input type="text" name="uname" value="<{$userinf['username']}>"/><span class="msg" style="color:red;font-size: 1.5em;"></span></div>	
+                <div><span>密码：</span><input type="text" name="pwd" value="<{$userinf['pwd']}>"/><span class="msg" style="color:red;font-size: 1.5em;"></span></div>			
+                <div><span>生日：</span><select name="year"><option value="<{$userinf['shengri'][0]}>"><{$userinf['shengri'][0]}></option>
+                        <{for $var=1918 to 2018}>
+                        <{if (1918+(2018-$var)) neq $userinf['shengri'][0]}>
+                        <option value="<{1918+(2018-$var)}>"><{1918+(2018-$var)}></option>
+                        <{/if}>
+                        <{/for}>
+                    </select>
+                    <select name="mouth"><option value="<{$userinf['shengri'][1]}>"><{$userinf['shengri'][1]}></option>
+                     <{for $var=1 to 12}>
+                        <{if 1918+(2018-$var) != $userinf['shengri'][1]}>
+                        <option value="<{1+(12-$var)}>"><{1+(12-$var)}></option>
+                           <{/if}>
+                        <{/for}>
+                    </select>
+                    <select name="day"><option value="<{$userinf['shengri'][2]}>"><{$userinf['shengri'][2]}></option>
+                    <{for $var=1 to 31}>
+                        <{if 1918+(2018-$var) != $userinf['shengri'][2]}>
+                        <option value="<{1+(31-$var)}>"><{1+(31-$var)}></option>
+                        <{/if}>
+                        <{/for}>
+                    </select><span class="msg" style="color:red;font-size: 1.5em;"></div>
+                <input type="hidden" name="img" value="<{$userinf['userImages']}>">
+                <div><span>我的头像：</span><input type="file" name="thumb" class="file" /></div>	
+                <div><span>个性签名：</span><textarea name="description" style='vertical-align: middle'><{$userinf['qianming']}></textarea></div>				      
+            </div>
+            <div class='submitbox'>
+                <input type="submit" name='sure' value="确定" />
+                <input type="reset" value="重置" />
+            </div>
+        </form>
+</div>       
+    </div>
+    <{/nocache}>
+    <div class="migu-footer"></div>
+</body>
+</html>
+<script>
+    $(function(){
+        var userInf_name=$('input[name=userInf-name]', window.parent.document).val();
+        if(userInf_name!=""){
+            $('.login').css('display','none');
+            $('.yonghu').css('display','block');
+            $('.yonghu span').text(userInf_name);
+        }
+    })
+     //点击登录弹出登录框
+    $('.user span:first-child').click(function(){
+        $('.bukedian', window.parent.document).css('display','block');
+        $('.login-zhuce', window.parent.document).css('display','block');
+        $('.zhuce-window', window.parent.document).css('display','none');
+        $('.login-window', window.parent.document).css('display','block');
+        $('.msg', window.parent.document).text("");
+        $('.use-pwd input',window.parent.document).val("");
+    })
+    //点击注册弹出注册框
+    $('.user span:last-child').click(function(){
+        $('.bukedian', window.parent.document).css('display','block');
+        $('.login-zhuce', window.parent.document).css('display','block');
+        $('.login-window', window.parent.document).css('display','none');
+        $('.zhuce-window', window.parent.document).css('display','block');
+        $('.msg', window.parent.document).text("");
+        $('.zhuce-input input',window.parent.document).val("");
+    })
+     //点击退出，用户登出
+    $('.yonghu li').click(function(){
+        $('input[name=userInf-name]', window.parent.document).val("");
+        $('input[name=userInf-ID]', window.parent.document).val("");
+        $('.yonghu').css('display','none');
+        $('.login').css('display','block'); 
+        clearSession();
+    })
+    
+        function checkfrom(form){
+        if($(':input[name=gname]').val()==""||$(':input[name=aname]').val()==""){
+           if($(':input[name=gname]').val()==""){
+               $('.msg').eq(0).text("*");           
+           }else{
+                $('.msg').eq(0).text("");   
+           }
+            if($(':input[name=aname]').val()==""){
+               $('.msg').eq(1).text("*");           
+           }else{
+                $('.msg').eq(1).text("");   
+           }
+           return false;
+        }else
+           return true;
+    }
+    
+    $(':input[name=search]').click(function(){      
+    var name=$("input[name=content]").val();
+    if(name==""||name=="听你喜欢"){
+        alert("请输入要搜索的信息！");
+        return;
+    }
+    window.location.href="../Control/findResultControl.php?content="+name; 
+})
+ $(document).keyup(function(event){
+            if(event.keyCode ==13){
+            $(':input[name=search]').trigger("click");
+         }
+        });
+    </script>

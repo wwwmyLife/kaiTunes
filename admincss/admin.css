@@ -1,0 +1,66 @@
+body,ul,h1,p{margin:0;padding:0;}
+body{color:#555;min-width:592px;overflow:hidden;}
+ul{list-style:none;}
+a{color:#07A;text-decoration:none;}
+a:hover{;text-decoration:underline;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+.center{text-align:center;}
+.remove{color:blue;cursor:pointer}
+/*登录页*/
+.login{background:#DEEFFA;overflow:visible;}
+.login_box{width:400px;background:#fff;margin:7% auto;padding:50px;box-shadow:0 0 15px #B5CFD9;}
+.login_box h1{font-size:24px;color:#09C;text-align:center;}
+.login_box img{cursor:pointer;}
+.login_box table{width:100%;height:300px;margin:0 auto;margin-top:20px;}
+.login_box th{text-align:right;font-weight:normal;}
+.login_box .input{width:250px;height:20px;border:1px solid #ddd;padding:5px;color:#666;font-size:20px;}
+.login_box .login_btn{width:80px;height:30px;margin:0 auto;background:#09C;color:#fff;border:1px solid #DEEFFA;cursor:pointer;}
+/*后台公共*/
+#top{height:60px;background:#DEEFFA;border-bottom:1px solid #B5CFD9;line-height:60px;}
+#top h1{font-size:20px;color:#09C;margin-left:20px;}
+#top ul{margin-right:50px;}
+#top li{float:left;margin-left:10px;}
+#main{position:absolute;top:62px;left:0px;right:0px;bottom:0px;}
+#main{*height:100%;}/*IE Fix*/
+#menu{width:160px;height:100%;background:#F2F9FD;box-shadow:0px 8px 12px #DEEFFA inset;}
+#menu ul{margin-top:35px;}
+#menu li{margin-bottom:5px;}
+#menu a{display:block;text-decoration:none;color:#555;padding:4px;text-indent:30px;}
+#menu a:hover{background:#EAF4FB;color:#2366A8;}
+#menu .curr{background:#DEEFFA!important;color:#555!important;}
+#content{position:absolute;top: 0px;right:0px;left:161px;bottom:0;overflow-y:auto;background:#fff;border-left:1px solid #B5CFD9;box-shadow:0px 8px 12px #DEEFFA inset;}
+#content .item{line-height:40px;margin-top:18px;margin-left:25px;margin-bottom:30px;}
+#content .title{color:#09C;font-weight:bold;float:left;margin-bottom:10px;}
+#content .title-btn{margin-left:20px;padding-top:7px;}
+#content .title-btn a{display:block;padding:1px 10px;background:#09C;color:#fff;height:25px;line-height:25px;font-size:13px;}
+#content .title-btn a:hover{text-decoration: none;}
+/*商品列表*/
+.data-list select{min-width:100px;height:26px;}
+.data-list table{border-collapse:collapse;min-width:700px;border:1px solid #ddd;background:#F7F7F7;margin-top:10px;font-size:14px;}
+.data-list th{font-weight:normal;text-align:center;}
+.data-list td{padding:0 10px;}
+.data-list table a{margin:0 3px;}
+.data-list table .odd{background:#fff;}
+.data-list table td,.data-list table th{border:1px solid #ddd;}/*firfox*/
+/*分页列表*/
+.pagelist{margin-top:10px;margin-left:250px;}
+.pagelist a{margin:0 5px;border:1px solid #ddd;padding:1px 4px;color:#666;}
+.pagelist a:hover{text-decoration: none;}
+.pagelist span{padding:1px 4px;}
+/*内容编辑*/
+.data-edit{border:1px solid #ddd;background:#F7F7F7;max-width:450px;padding:20px 40px;}
+.data-edit th{font-weight:normal;text-align:right;vertical-align:top;}
+.data-edit td{padding:0 10px;}
+.data-edit select{min-width:100px;height:26px;}
+.data-edit .file{font-size:12px;}
+.data-edit textarea{width:200px;height:50px;}
+.data-edit input{width:200px;}
+/*内容按钮*/
+.tr_btn input{width:70px;height:25px;margin:20px;}
+/*分类嵌套*/
+.data-tree{width:600px;font-size:14px;background:#F2F9FD;padding:20px;box-shadow:6px 6px 2px #ECF5FB; }
+.data-tree div{margin-left:20px;border-top:2px dotted #fff;}
+
+

@@ -1,0 +1,168 @@
+.bukedian{
+    z-index: 100;
+    position: fixed;
+    left: 0;top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(117, 121, 118, 0.74);
+    display: none;
+}
+.login-zhuce{
+/*    margin-left:-175px;
+    margin-top:-200px;*/
+    background-color: rgb(136, 179, 255);
+    width: 350px;height: 400px;
+    z-index: 101;
+    position: fixed;
+    left: 500px;top:120px;
+    display: none;
+    box-shadow: darkgrey 0px 0px 30px 5px;
+}
+.login-img img{
+    zoom:0.7;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.login-img span{
+    position: absolute;
+    top:0;
+    right:10px;
+    font-size: 25px;
+    color: rgba(230, 19, 116, 0.39);
+    cursor: pointer;
+}
+.login-img span:hover{
+    color: rgb(230, 19, 116);
+}
+
+.use-pwd input{
+    position: relative;
+    display: block;
+    width:298px;
+    height:40px;
+    line-height: 40px;
+    border:1px solid rgba(255, 35, 168, 0.52);
+    margin-bottom: 15px;
+    margin-left: 25px;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 150;
+    padding-left: 10px;
+    outline: none;
+}
+input[value=登录]{
+    line-height: 40px;
+    width:298px;
+    height:40px;
+    margin-left: 25px;
+    margin-top: 30px;
+    color:white;
+    background-color: #ff23a8;
+    border-radius: 10%;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-input span{
+    position: relative;
+    top:-184px;
+    left:30px;
+    margin-bottom: 35px;
+    display: block;
+    z-index: 120;
+
+}
+.login-buttom span{
+    display: block;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: #595959;
+    cursor: pointer;
+}
+.login-buttom{
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    height:80px;
+    background-color: rgb(121, 164, 235);
+}
+.msg{
+    margin-left: 25px;
+    height:30px;
+    line-height: 30px;
+    width: auto;
+    color: #d91271;
+}
+.login-window{
+    display: none;
+}
+.zhuce-window{
+    display: none;
+}
+.zhuce-window label{
+    display: inline-block;
+    width:110px;
+    height:30px;
+    line-height: 30px;
+    text-align: right;
+    color: #595959;
+}
+.zhuce-input input{
+    width:200px;
+    height:30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border:1px solid rgba(255, 35, 168, 0.52);
+    background-color: rgba(255, 255, 255, 0);
+}
+#clear-margin{
+    margin:0;
+}
+input[value=注册]{
+    margin-top: 20px;
+    width:210px;
+    height: 30px;
+    margin-left: 110px;
+    color:white;
+    background-color: #ff23a8;
+    cursor: pointer;
+    border-radius: 10%;
+}
+.yanzhenma{
+    width:150px;
+    height: 40px;
+    margin:5px 25px 5px 135px;
+    background-color: #ed6cff;
+}
+.zhuce-buttom{
+     position: absolute;
+    bottom: 0;
+    width:100%;
+    height:80px;
+    background-color: rgb(121, 164, 235);
+}
+.zhuce-buttom span{
+    display: block;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: #595959;
+    cursor: pointer;
+}
+.login-zhuce input[type=button]:hover{
+    background-color: #e82296;
+}
+.login-buttom span:hover{
+    color: #000000;
+}
+.zhuce-buttom span:hover{
+    color: #000000;
+}
+input[type=password]:focus{
+    outline: none;
+    border:1px solid #e51373;
+}
+input[type=text]:focus{
+    outline: none;
+    border:1px solid #e51373;
+}

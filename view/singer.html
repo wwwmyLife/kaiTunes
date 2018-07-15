@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.min.js" ></script>
+    <script src="../js/jquery.pagination.js" ></script>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/pagination.css" rel="stylesheet">
+    <link href="../css/index-css.css" rel="stylesheet">
+</head>
+<body>
+<div class="migu-header">
+    <div class="header-top">
+        <div class="logo">
+            <img src="../images/logo.png" alt="">
+        </div>
+        <div class="header-left">
+            <ul>
+                <li><a href="indexControl.php">推荐</a></li>
+                    <li><a href="singerControl.php?tabSi=0">歌手</a></li>
+                    <li><a href="myControl.php">我的</a></li>
+            </ul>
+        </div>
+        <div class="header-right">
+                <div class="user">
+                    <div class="login">
+                        <span>登录</span>
+                        <span>注册</span>
+                    </div>
+                    <div class="yonghu">
+                        <img src="../images/default-head.png" alt="">
+                        <span>好久不..</span>
+                        <ul>
+                            <li>退出</li>
+                        </ul>
+                    </div>
+                    <!--<span id="ppp">|作者 ></span>
+
+                    <div class="zuozhe">
+                        <a href=""><img src="images/default-head.png" alt=""></a>
+                        <div class="menu">
+                            <ul>
+                                <li>姓名：王云凯</li>
+                                <li>学号：201526203068</li>
+                                <li>手机：18979545800</li>
+                                <li>邮箱：18979545800@163.com</li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="find">
+                    <input type="text" name="content" value="听你喜欢">
+                    <input class="yun" name="search" type="button" value="搜索">
+                </div>
+            </div>
+    </div>
+    <div class="header-footer">
+    </div>
+</div>
+<div class="singerPage-contents">
+        <div class="singer-fenlei">
+            <ul>
+                <li id="hong" tabSi="0">全部歌手</li>
+                <{foreach $singertab[0] as $value}>
+                <li tabSi="<{$value['tabsiID']}>"><{$value['tabname']}></li>
+                <{/foreach}>
+            </ul>
+        </div>
+        <div class="singer-liebiao">
+            <input type="hidden" name='currenTabsi' value="0">
+            <div class="singerDisplay">
+                <div class="singer-qian">
+                    <{foreach $resultSinger[3] as $value}>
+                <div class="singer-demo">
+                    <a href="singerIndexControl.php?singerID=<{$value['singerID']}>">
+                        <img src="../images/<{$value['singerImages']}>">
+                        <span><{$value['singername']}></span>
+                    </a>
+                </div>
+                    <{/foreach}>
+
+            </div>
+            <div class="liebiao-singer">
+                <ul>
+                     <{foreach $resultSinger[4] as $value}>
+                    <li><a href="singerIndexControl.php?singerID=<{$value['singerID']}>"><{$value['singername']}></a></li>
+                    <{/foreach}>     
+                </ul>
+            </div>
+            </div>
+            <div class="fenye">
+                <div class="M-box2">
+                </div>
+                <input type="hidden" name='singerTotal' value="<{$resultSinger[2][0]['singerTotal']}>">
+            </div>
+        </div>
+</div>   
+<div class="migu-footer">
+</div>
+</body>
+</html>
+<script>
+   $(function(){
+        var userInf_name=$('input[name=userInf-name]', window.parent.document).val();
+        if(userInf_name!=""){
+            $('.login').css('display','none');
+            $('.yonghu').css('display','block');
+            $('.yonghu span').text(userInf_name);
+        }
+    })
+     //点击登录弹出登录框
+    $('.user span:first-child').click(function(){
+        $('.bukedian', window.parent.document).css('display','block');
+        $('.login-zhuce', window.parent.document).css('display','block');
+        $('.zhuce-window', window.parent.document).css('display','none');
+        $('.login-window', window.parent.document).css('display','block');
+        $('.msg', window.parent.document).text("");
+        $('.use-pwd input',window.parent.document).val("");
+    })
+    //点击注册弹出注册框
+    $('.user span:last-child').click(function(){
+        $('.bukedian', window.parent.document).css('display','block');
+        $('.login-zhuce', window.parent.document).css('display','block');
+        $('.login-window', window.parent.document).css('display','none');
+        $('.zhuce-window', window.parent.document).css('display','block');
+        $('.msg', window.parent.document).text("");
+        $('.zhuce-input input',window.parent.document).val("");
+    })
+    //点击退出，用户登出
+    $('.yonghu li').click(function(){
+        $('input[name=userInf-name]', window.parent.document).val("");
+        $('input[name=userInf-ID]', window.parent.document).val("");
+        $('.yonghu').css('display','none');
+        $('.login').css('display','block'); 
+        clearSession();
+    })
+    function clearSession(){
+        $.get("../Control/clearSessionControl.php");
+    }
+    $('.singerPage-contents .M-box2').pagination({
+        coping: true,
+        homePage: '首页',
+        endPage: '末页',
+        prevContent: '上页',
+        nextContent: '下页',
+        pageCount:((parseInt($('input[name=singerTotal]').val())-36)/48+1).toString(),
+        //callback()： PageCallback
+        callback: function (api) {
+            var yema=parseInt(api.getCurrent())*48-60;
+            var tabsi=$('input[name=currenTabsi]').val();
+            if(yema==-12){
+                yema=0;
+            }
+            singerAjax(tabsi,yema)  
+        }
+    });
+
+$('.singer-fenlei li').click(function(){
+    var tabsi=$(this).attr('tabSi');
+    singerAjax(tabsi,0);
+})
+     function singerAjax(tabsi,yema){
+          $.ajax({
+                type:"GET",
+                url:"../Control/singerFenyeControl.php",   //请求的url地址，即删除商品的控制器
+                data:{tabSiID:tabsi,yema:yema,falg:0},  //请求时发送的数据，mid和gid
+                dataType:"json",
+                success: function(msg){
+                     $('.singerDisplay').empty();
+                     if(yema==0){
+                         $('input[name=currenTabsi]').val(tabsi);
+                          var singerTotal=msg[2][0]['singerTotal'];
+                             $('.singerPage-contents .M-box2').pagination({
+                                coping: true,
+                                homePage: '首页',
+                                endPage: '末页',
+                                prevContent: '上页',
+                                nextContent: '下页',
+                                pageCount:Math.ceil((singerTotal-36)/48+1),
+                                //callback()： PageCallback
+                                callback: function (api) {
+                                    var yema=parseInt(api.getCurrent())*48-60;
+                                    var tabsi=$('input[name=currenTabsi]').val();
+                                    if(yema==-12){
+                                        yema=0;
+                                    }
+                                    singerAjax(tabsi,yema)  
+                                }
+                            });
+                         var singerqian="<div class='singer-qian'>";
+                          $.each(msg[3],function(index){  
+                                  singerqian+="<div class='singer-demo'><a href='singerIndexControl.php?singerID="+msg[3][index]['singerID']+"'><img src='../images/"+msg[3][index]['singerImages']+"'><span>"+msg[3][index]['singername']+"</span></a></div>";
+                               })
+                              singerqian+="</div><div class='liebiao-singer'><ul>";
+                          $.each(msg[4],function(index){                        
+                              singerqian+="<li><a href='singerIndexControl.php?singerID="+msg[4][index]['singerID']+"'>"+msg[4][index]['singername']+"</li>";
+                            })    
+                          singerqian+="</ul></div>";
+                        $('.singerDisplay').html(singerqian);
+                     }else{
+                        liebiaosinger="<div class='liebiao-singer'><ul>";  
+                        $.each(msg[0],function(index){
+                        liebiaosinger+="<li><a href='singerIndexControl.php?singerID="+msg[0][index]['singerID']+"'>"+msg[0][index]['singername']+"</li>";
+                     if(index==17||index==35){
+                         for(var i=0;i<6;i++){
+                         liebiaosinger+="<li style='height:20px'></li>";
+                     }
+                     }
+                        })
+                        liebiaosinger+="</ul></div>";
+                     $('.singerDisplay').html(liebiaosinger);
+                     }  
+              }
+            })
+     }   
+    
+    $('.singer-fenlei ul li').click(function(){
+        $(this).css({
+            'background-color': '#e51373',
+            'color':'white'
+        }).siblings().css({
+            'background-color': 'white',
+            'color':'#4f4f4f'
+        })
+    })
+    
+    $(':input[name=search]').click(function(){      
+    var name=$("input[name=content]").val();
+    if(name==""||name=="听你喜欢"){
+        alert("请输入要搜索的信息！");
+        return;
+    }
+    window.location.href="../Control/findResultControl.php?content="+name; 
+})
+ $(document).keyup(function(event){
+            if(event.keyCode ==13){
+            $(':input[name=search]').trigger("click");
+         }
+        });
+     
+</script>

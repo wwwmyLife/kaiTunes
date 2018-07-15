@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>KaiTunes后台</title>
+	<link href="../admincss/admin.css" rel="stylesheet" />
+	<script src="../adminjs/jquery.min.js"></script>
+        <script src="../adminjs/jquery.pagination.js" ></script>
+        <link href="../admincss/pagination.css" rel="stylesheet">
+</head>
+<body>
+<div id="top">
+	<h1 class="left">KaiTunes音乐 后台管理系统</h1>
+	<ul class="right">
+		<li>欢迎您：<{$smarty.session.username}></li>
+		<li>|</li><li><a href="../Control/playMusicControl.php" target="_blank">前台首页</a></li>
+		<li>|</li><li><a href="../adminControl/nologin.php">退出登录</a></li>
+	</ul>
+</div>
+<div id="main">
+	<div id="menu" class="left">
+		<ul><li><a href="../adminControl/adminLoginControl.php" id="Index_index">后台首页</a></li>
+			<li><a href="../adminControl/addSingerControl.php" id="singer_add">歌手添加</a></li>
+                        <li><a href="../adminControl/addAlbumControl.php" id="album_add">专辑添加</a></li>
+                        <li><a href="../adminControl/addSongControl.php" id="song_add">歌曲添加</a></li>
+                        <li><a href="../adminControl/singerIndexControl.php?tabSi=0" id="singer_index">歌手列表</a></li>
+			<li><a href="../adminControl/album-indexControl.php" id="album-index">专辑列表</a></li>
+                       	<li><a href="../adminControl/song-findControl.php" id="song-find">歌曲搜索</a></li>
+			<li><a href="../adminControl/memberControl.php" id="Member_index">会员管理</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<div class="item"><div class="title">会员列表</div>
+<div class="data-list clear">
+      <{nocache}>
+	<table border="1">    
+		<tr><td>用户ID</td><td>用户昵称</td><td>出生日期</td><td>个性签名</td><td>操作</td></tr>
+                <{foreach $memberInf[2] as $value}>
+		<tr><td class="userID"><{$value['userID']}></td><td><{$value['username']}></td><td><{$value['shengri']}></td>
+                    <td><{$value['qianming']}></td><td><span class='remove'>删除</span></td></tr>
+                <{/foreach}>            
+                </table>
+      <{/nocache}>
+	<div class="pagelist" style="margin-left: 0;width:700px;margin-top: 40px;">
+                <div class="M-box2">
+                </div>            
+            </div>
+</div>
+</div>
+	</div>
+    <input type="hidden" name='userTotal' value="<{$memberInf[3][0]['userTotal']}>">
+</div>
+</body>
+</html>
+<script>
+     $('.M-box2').pagination({
+        coping: true,
+        homePage: '首页',
+        endPage: '末页',
+        prevContent: '上页',
+        nextContent: '下页',
+        pageCount:((parseInt($('input[name=userTotal]').val())-3)/2+1).toString(),
+        callback: function (api) {
+            var yema=parseInt(api.getCurrent())*2-1;
+            if(yema==1){
+                yema=0;
+            }
+            singerAjax(yema);  
+        }
+    });
+    function singerAjax(yema){
+          $.ajax({
+                type:"GET",
+                url:"../adminControl/singerindexfenyeControl.php",   
+                data:{yema:yema,falg:2}, 
+                dataType:"json",
+                success: function(msg){
+                     $('table').empty();
+                     var singerqian="<tr><td>用户ID</td><td>用户昵称</td><td>出生日期</td><td>个性签名</td><td>操作</td></tr>";
+                     $.each(msg[2],function(index){
+                        singerqian+="<tr><td class='userID'>"+msg[2][index]['userID']+"</td><td>"+msg[2][index]['username']+"</td><td>"+msg[2][index]['shengri']+"</td><td>"+msg[2][index]['qianming']+"</td><td><span class='remove'>删除</span></td></tr>"
+                        })
+                     $('table').html(singerqian);
+                     }
+            })
+     }  
+    $('table').on('click','.remove',function(){
+        if(confirm("确认要删除吗？")){
+            var userID=$(this).parents('tr').find('.userID').text();
+            $.post('../adminControl/delControl.php',{userID:userID,falg:0},function(msg){
+                for(var key in msg){
+                    if(key==0){
+                        $('.userID:contains('+userID+')').parents('tr').remove();
+                    }else{
+                        alert(msg[key]);
+                    }
+                }
+            },'json')
+        }
+    })
+    
+    </script>

@@ -1,0 +1,668 @@
+/*轮播图*/
+.lunbotu{
+    position:relative;
+    height:445px;
+    width:100%;
+}
+.lunbotu-picture{
+    position:relative;
+    height:445px;
+    width:100%;
+}
+.lunbotu-picture a{
+    width:100%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.lunbotu-picture a:first-child{
+}
+.lunbotu-picture img{
+    width:100%;
+    height:100%;
+    display: block;
+
+}
+.lunbotu-buttom{
+    position:absolute;
+    bottom:5%;
+    left:50%;
+    margin-left: -75px;
+    height:25px;
+    width:150px;
+    z-index: 5;
+}
+.lunbotu-buttom ul{
+    text-align: center;
+    height:25px;
+}
+.lunbotu-buttom ul li{
+    list-style-type: none;
+    display: inline-block;
+    border-radius: 50%;
+    height:8px;
+    width:8px;
+    background-color: white;
+    margin-right: 5px;
+    margin-left: 5px;
+    vertical-align:middle;
+    cursor: pointer;
+}
+#to-left{
+    position: absolute;
+    left:20px;
+    top:50%;
+    margin-top: -50px;
+    height:100px;
+    width:60px;
+    opacity: 0.2;
+    background-color: #ffffff;
+    z-index: 5;
+    cursor: pointer;
+}
+#to-right {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -50px;
+    height: 100px;
+    width: 60px;
+    opacity: 0.2;
+    background-color: white;
+    z-index: 5;
+    cursor: pointer;
+}
+
+/*歌曲推荐*/
+.tuijian{
+    height:377px;
+    width:1000px;
+    margin:10px auto;
+    position: relative;
+}
+.tuijian-song{
+    position: absolute;
+    width:650px;
+    height:100%;
+    left:0;
+    top:0;
+}
+.tuijian-singer{
+    position: absolute;
+    width:320px;
+    height:100%;
+    right:0;
+    top:0;
+}
+.biaoti{
+    position: relative;
+    color: #030303;
+    width:100%;
+    height:80px;
+    line-height:100px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(162, 170, 155, 0.24);
+}
+.biaoti h2{
+    position: absolute;
+    left:0;
+    font-size: 30px;
+    font-weight: 200;
+}
+.bianhong{
+    color:#e51373
+}
+.change-songs,.change-singers{
+    position: absolute;
+    right:0;
+    font-size: 15px;
+    cursor: pointer;
+}
+.change-songs:hover{
+    color:#e51373;
+}
+.change-singers:hover{
+    color:#e51373;
+}
+.songs{
+    height:auto;
+    width:100%;
+    background-color: white;
+    margin-top: 8px;
+    color: #3c4238;
+    font-size:13px;
+}
+.song{
+    position: relative;
+    width:100%;
+    height:36px;
+}
+.song-name{
+    position: absolute;
+    left:0;
+    display: block;
+    height:36px;
+    line-height: 36px;
+    margin-left: 8px;
+}
+.time{
+    position: absolute;
+    right:0;
+    display: block;
+    height:36px;
+    line-height: 36px;
+    margin-right: 8px;
+    font-size: small;
+}
+.caozuo{
+    position: absolute;
+    height:36px;
+    line-height: 36px;
+    right:80px;
+    display: none;
+}
+.caozuo span{
+    display: inline-block;
+    margin-right: 15px;
+    color: #c3c3c3;
+    font-size: 30px;
+    cursor: pointer;
+}
+.bofang:hover{
+    color:#e51373;
+}
+.addsong:hover{
+    color:#e51373;
+}
+.song:hover{
+    background-color: rgba(255, 38, 132, 0.07);
+    color: #ff1389;
+}
+.song:hover .caozuo{
+    display: block;
+}
+/*推荐歌手*/
+.tuijian-singer{
+/*    position: relative;*/
+}
+.singer a{
+    display: block;
+}
+.singers{
+    position: absolute;
+    top:80px;
+    right:0;
+    width:100%;
+    height:268px;
+}
+.singer{
+    position: relative;
+    display: inline-block;
+    height:auto;
+}
+.hui{
+    position: absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    background-color: rgba(118, 125, 109, 0.41);
+    display: none;
+}
+.singer:hover .hui{
+    display: block;
+}
+.singers>div:nth-child(n+3) img,.singers>div:nth-child(n+3){
+    width:103px;
+    height:103px;
+}
+.singers>div:first-child img,.singers>div:first-child{
+    width:157px;
+    height:157px;
+}
+.singers>div:nth-child(2) img,.singers>div:nth-child(2){
+    width:157px;
+    height:157px;
+}
+.singer-name{
+    position: absolute;
+    width:100%;
+    bottom:10px;
+    left:10px;
+    height:20px;
+    line-height: 20px;
+    color:white;
+    font-size: 13px;
+}
+.singer-buttom{
+    position: absolute;
+    bottom: 0; 
+    height:28px;
+    line-height:28px ;
+    margin-left: 41%;
+}
+.singer-buttom li{
+    display: inline-block;
+    list-style-type: none;
+    width: 8px;
+    height:8px;
+    border-radius: 50%;
+    background-color: #a1a1a1;
+    margin-right: 10px;
+}
+.singer-buttom li:first-child{
+    background-color: #e51373;
+}
+/*.displaynone{
+    display:none;
+}*/
+
+/*歌手页面*/
+
+.singerPage-contents{
+    width:1000px;
+    margin:0 auto;
+    height:500px;
+    margin-top: 20px;    
+}
+.singer-fenlei{
+    width:200px;
+    height:100%;
+    float: left;
+  
+}
+.singer-fenlei li{
+    list-style-type: none;
+    height:30px;
+    line-height: 30px;
+    color: #4f4f4f;
+    padding-left: 70px;
+    font-size: 13px;
+    cursor: pointer;
+}
+#hong{
+    background-color:#e51373 ;
+    color:white;
+}
+.singer-fenlei li:hover{
+    background-color: #e51373;
+    color:white;
+}
+.singer-fenlei li:nth-child(3n+5){
+    margin-top: 25px;
+}
+
+.singer-liebiao{
+    width:789px;
+    height:100%;
+    background-color: #ffffff;
+    float: left;
+    margin-left: 10px;
+    border-left: 1px solid rgba(128, 128, 128, 0.58);
+}
+.singerDisplay{
+    width:100%;
+    height:88%;
+    overflow: hidden;
+}
+.singer-demo{
+    position: relative;
+    float: left;
+    width:120px;
+    height:120px;
+    background-color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.singer-demo a{
+    display: block;
+}
+.singer-demo a img{
+    width:120px;
+    height:120px;
+}
+.singer-demo span{
+    display: none;
+    position: absolute;
+    bottom:0;
+    color:white;
+    width:100%;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(15, 15, 15, 0.61);
+}
+.singer-demo a:hover span{
+    display: block;
+}
+.singer-qian {
+    height: 260px;
+    margin-bottom: 20px;
+}
+.liebiao-singer{
+    width:100%;
+    height:auto;
+    clear: both;
+    margin-top: 10px;
+    background-color: #3A3B3B;
+}
+.liebiao-singer li{
+    list-style-type: none;
+    height:40px;
+    width:120px;
+    margin-left: 10px;
+    float: left;
+
+}
+.liebiao-singer li a{
+    color: #535353;
+    text-decoration: none;
+}
+.liebiao-singer li a:hover{
+    color: #fe1388;
+}
+.fenye{
+    padding-top: 30px;
+    display: table;
+    margin:0 auto;
+}
+/*我的音乐*/
+.my-index,.singer-index,.album-index{
+    width:1000px;
+    margin:0 auto;
+    border-left:1px solid rgba(143, 140, 153, 0.83);
+    border-right:1px solid rgba(143, 140, 153, 0.83);
+}
+.my-top,.singer-top,.album-top{
+    position: relative;
+    width:100%;
+    height:280px;
+   
+}
+.my-songs,.singer-song,.album-songs{
+    width:100%;
+    height: auto;
+    margin-left: 20px;
+  
+}
+.my-picture,.singer-picture,.album-picture{
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top:-120px;
+    width:240px;
+    height:240px;
+}
+.my-picture img,.singer-picture img,.album-picture img{
+    width:240px;
+    height:240px;
+}
+.my-info,.singer-info,.album-info{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top:-100px;
+    width:670px;
+    height:200px;
+   
+}
+.my-info ul li,.singer-info ul li,.album-info ul li{
+    list-style-type: none;
+    margin-top: 10px;
+}
+.my-info li:first-child,.singer-info li:first-child,.album-info li:first-child{
+    border-bottom: 1px solid rgba(218, 218, 218, 0.91);
+    color: #3f3f3f;
+    height:50px;
+    line-height: 50px;
+    font-size:25px;
+}
+.album-info li:nth-child(2){
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.ziliao{
+    float: right;
+    font-size: 15px;
+}
+.singer-info li p{
+    color: #666c62;
+    font-size: 14px;
+}
+.singer-info li p span{
+    color: #000000;
+    font-size: 16px;
+}
+.album-songs h2{
+    border-bottom:2px solid rgba(229, 19, 115, 0.79);
+    width: 960px;
+}
+.album-songs h2:last-child{
+    margin-top: 50px;
+    padding-top: 50px;
+}
+.my-like,.album-song{
+    
+    width: 960px;
+}
+table{
+    padding-top: 0;
+    width:960px;
+    border-spacing: 0;
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+td,th{padding:10px;
+    text-align: left;
+}
+th{
+    padding:10px 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: #3f002d;
+}
+tr th:first-child{
+     width:46px;
+     padding-left: 15px;
+}
+tr td:first-child{
+     width:46px;
+     padding-left: 15px;
+}
+tr td:nth-child(2){
+    width:300px;
+}
+tr td:nth-child(3){
+    width:100px;
+}
+tr td:nth-child(4){
+    width:200px;
+}
+tr td:last-child{
+    width:100px;
+    padding: 0;
+}
+.chuli{
+    display: none;
+    font-size: 30px;
+    height:40px;
+    line-height: 40px;   
+}
+.chuli span{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.delsong:hover{
+    color: #e51373;   
+}
+tr:nth-child(2n+2){
+    background-color: rgba(188, 195, 170, 0.31);
+}
+td{
+    color: #494e4a;
+    font-size: 15px;
+    padding-left: 0;
+}
+tr:not(th):hover{
+    background-color:rgba(188, 195, 170, 0.59);
+}
+tr:hover .chuli{
+    display:block;
+}
+
+
+/*歌手主页*/
+.singer-info p{
+    display: inline-block;
+    overflow: auto;
+    height:100px;
+}
+.tab li{
+    list-style-type: none;
+    display: inline-block;
+    padding:5px 30px;
+    font-size: 18px;
+    font-weight: 200;
+    cursor: pointer;
+}
+.tab li:first-child{
+    border-bottom:2px solid #e51373;
+    color:#e51373 ;
+}
+.tab{
+    width:960px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.d-tab2{
+    display: none;
+    margin-top: 20px;
+    overflow: hidden;
+}
+.d-tab3{
+    margin-top: 20px;
+}
+.d-tab2 .albumbox li,.d-tab3 li{
+    list-style-type: none;
+    float: left;
+    position: relative;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+.d-tab2 .albumbox a,.d-tab3 a{
+    display: block;
+    width:180px;
+    height:210px;
+    color: #505050;
+}
+.d-tab2 img,.d-tab3 img{
+    width:180px;
+    height:180px;
+}
+.d-tab2 .albumbox span,.d-tab3 span{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    font-size: 15px;
+}
+.d-tab2 .albumbox span:hover{
+    color: #e51373;
+}
+.d-tab3 span:hover{
+    color: #e51373;
+}
+.piliangCaozuo{
+    width: 100%;
+    height: 45px;
+    padding-left: 15px;
+    line-height: 45px;
+    margin-top: 20px;
+    color:gray;
+}
+.piliangCaozuo div:first-child{
+    cursor: pointer;
+    display: inline-block;
+}
+.likeAll{
+    display: inline-block;
+    font-size: 22px;
+    display: inline-block;
+    border: 1px solid #c2c2c2;
+    margin-left: 12px;
+    padding: 0 28px;
+    color:gray;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.likeAll:hover{
+    background-color: #e51373;
+    border-color: #e51373;
+    color:white;
+}
+.likeAll:hover span{
+    color:white;
+}
+.likeAll span{
+    font-size: 30px;
+    color: #c2c2c2
+}
+.albumbox{
+    width:100%;
+    height:auto;
+    overflow: hidden;
+}
+
+/*用户信息编辑页面*/
+.user-inf{
+    padding: 0 20px;
+    width: 800px;
+    margin: 0 auto;
+    border-left:1px solid rgba(143, 140, 153, 0.83);
+    border-right:1px solid rgba(143, 140, 153, 0.83);
+    height: 350px;
+}
+.infbox{
+    padding-top: 50px;
+    padding-left: 80px;
+}
+.my-images{
+    float: right;
+    margin-right: 85px;
+    margin-top: 50px;
+    width: 240px;
+    height: 280px;
+    text-align: center;
+}
+.inf-edit span{
+    display: inline-block;
+    width:100px;
+    line-height: 30px;
+    height:30px;
+    text-align: right;
+    
+}
+.inf-edit select{
+    margin-right: 10px;
+}
+.inf-edit div{
+   height:40px;
+   line-height: 40px;
+}
+.submitbox{
+    margin-left: 100px;
+}
+.submitbox input{
+    margin-top: 30px;
+    margin-right: 80px
+    height:50px;
+    width:60px;
+}
+
+
+
+/*专辑页面*/
+.other-album{
+    margin-top: 60px;
+    overflow: hidden;
+}
